@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { AddressModule } from './address/address.module';
 import { PetModule } from './pet/pet.module';
+import { EventsModule } from './events/events.module';
 
 
 
@@ -16,7 +17,8 @@ import { PetModule } from './pet/pet.module';
     ConfigModule.forRoot({ isGlobal: true }),
     AuthModule,
     AddressModule,
-    PetModule
+    PetModule,
+    EventsModule
   ],
   controllers: [],
   providers: [],

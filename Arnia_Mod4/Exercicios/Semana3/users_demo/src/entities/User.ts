@@ -1,7 +1,9 @@
-import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import * as bcrypt from 'bcrypt';
 import { Address } from "./Address";
 import { Pet } from "./Pet";
+import { Events } from "./Events";
+
 
 @Entity('users')
 export class User{
@@ -23,6 +25,10 @@ export class User{
     @OneToMany(() => Pet, (pet) => pet.user)
     pet:Pet[]
 
+    @ManyToMany(() => Events, (event) => event.participants)
+    @JoinTable()
+    events: Events[]
+
     @CreateDateColumn()
     createdAt: Date;
 
@@ -36,5 +42,7 @@ export class User{
     async hashPassword(){
         this.password = await bcrypt.hashSync(this.password, 10);
     }
+
+    
        
 }

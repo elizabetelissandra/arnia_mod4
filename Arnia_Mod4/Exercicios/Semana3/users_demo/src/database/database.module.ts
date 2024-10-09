@@ -3,6 +3,7 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import * as dotenv from 'dotenv';
 import { Address } from "src/entities/Address";
+import { Events } from "src/entities/Events";
 import { Pet } from "src/entities/Pet";
 import { User } from "src/entities/User";
 
@@ -18,7 +19,7 @@ dotenv.config();
             username: process.env.DB_USERNAME || 'postgres', 
             password: process.env.DB_PASSWORD || '1234',
             database: process.env.DB_NAME || 'Arnia_Users',
-            entities: [User, Address, Pet],
+            entities: [User, Address, Pet, Events],
             synchronize: true,
           }
         ),

@@ -1,11 +1,13 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query } from "@nestjs/common";
 import { CustomersService } from "./customers.service";
 import { UpdateCustomer } from "./dto/updateCustomer";
+import { ApiTags } from "@nestjs/swagger";
 
+@ApiTags('customers')
 @Controller('customers')
 export class CustomersController {
     constructor( private customersService: CustomersService){}
-    co
+    
 
     @Post()
     createCustomer(@Body() body: any) {

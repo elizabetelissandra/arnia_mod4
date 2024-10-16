@@ -1,0 +1,5 @@
+{
+    "conventionalCommits.scopes": [
+        "Adicionando a entidade Events, com relacionamentos Muitos para muitos;"
+    ]
+}

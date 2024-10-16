@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { AddressModule } from './address/address.module';
 import { PetModule } from './pet/pet.module';
 import { EventsModule } from './events/events.module';
+import { ImagesModule } from './images/images.module';
 
 
 
@@ -18,7 +19,8 @@ import { EventsModule } from './events/events.module';
     AuthModule,
     AddressModule,
     PetModule,
-    EventsModule
+    EventsModule,
+    ImagesModule
   ],
   controllers: [],
   providers: [],

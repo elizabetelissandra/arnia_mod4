@@ -1,5 +1,7 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User";
+import { EventPhotos } from "./EventPhotos";
+import { Images } from "./Images";
 
 @Entity()
 export class Events{
@@ -9,10 +11,15 @@ export class Events{
     @Column()
     eventName: string
 
-    @Column()
+    @Column({type: Date})
     eventDate: Date
 
     @ManyToMany(() => User, (user) => user.events)
     participants: User[]
 
+    @OneToMany(() => EventPhotos, (eventPhoto) => eventPhoto.event)
+    photo: EventPhotos
+
+    @OneToMany(() =>  Images, (image) => image.event)
+    image: Images
 }

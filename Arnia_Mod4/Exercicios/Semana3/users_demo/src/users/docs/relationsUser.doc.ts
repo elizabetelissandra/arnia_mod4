@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { UserDoc } from "./User.doc";
 import { Pet } from "../../entities/Pet";
-import { Address } from "src/entities/Address";
+import { Address } from "../../entities/Address";
 
 export class RelationUserDoc extends UserDoc{
     @ApiProperty({type: [Pet], description: 'list of Pets', example: {

@@ -21,6 +21,7 @@ import { CreateUserDoc } from './docs/createUser.doc';
 import { UserDoc } from './docs/User.doc';
 import { RelationUserDoc } from './docs/relationsUser.doc';
 import { ResponseGetUserDoc } from './docs/responseGetUser.doc';
+import { currentUserDto } from '../auth/dtos/currentUser.dto';
 
 @ApiTags('Users')
 @Controller('users')
@@ -49,8 +50,8 @@ export class UsersController {
   @ApiResponse({ type: RelationUserDoc })
   @UseGuards(AuthGuard)
   @Get('profile')
-  async profile(@Req() request: Request) {
-    return await this.usersService.profile(request);
+  async profile(@Req() currentUser: currentUserDto) {
+    return await this.usersService.profile(currentUser);
   }
 
   @ApiResponse({type: RelationUserDoc})

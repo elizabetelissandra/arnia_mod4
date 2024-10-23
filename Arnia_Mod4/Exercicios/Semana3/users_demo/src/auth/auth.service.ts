@@ -1,5 +1,5 @@
 import { HttpException, Injectable, UnauthorizedException } from '@nestjs/common';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from '../users/users.service';
 import * as bcrypt from "bcrypt";
 import { JwtService } from '@nestjs/jwt';
 import { CreateUserDto } from 'src/users/dtos/CreateUser.dto';
@@ -18,10 +18,9 @@ export class AuthService {
             if(!user){
                 console.log(`Email ${body.email} não encontrado.`)
                 throw new UnauthorizedException('Invalid credentials');
-                
             }
             
-            const isPasswordValid = await bcrypt.compare(body.password, user.password);
+            const isPasswordValid = bcrypt.compareSync(body.password, user.password);
             
         if (!isPasswordValid) {
             console.log(`Senha ${body.password} não encontrado.`)

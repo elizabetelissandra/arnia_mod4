@@ -9,6 +9,7 @@ import { User } from '../entities/User';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateUserDto } from './dtos/UpdateUser.dto';
+import { currentUserCopyDto } from 'src/auth/dtos/currentUser.copy.dto';
 
 @Injectable()
 export class UsersService {
@@ -64,11 +65,11 @@ export class UsersService {
 
   async updateBy(id: number, body: UpdateUserDto) {
     try {
-      const user = await this.findBy(id);
+      await this.findBy(id);
 
-      const userModified = Object.assign(user, body);
+      await this.usersRepository.update(id, body);
 
-      await this.usersRepository.save(userModified);
+     return await this.usersRepository.findOneBy({id});
     } catch (error) {
       console.log(error);
       throw new HttpException(error.message, error.status);
@@ -104,19 +105,21 @@ export class UsersService {
     }
   }
 
-  async profile(request: Request) {
+  async profile(current: currentUserCopyDto) {
     try {
-      const { id } = request['user'];
+      return await this.findBy(current.id)
+
+      // const { id } = request['user'];
 
   
-      const user =  await this.usersRepository.findOne({
-        where: { id: id },
-        relations: 
-        {address: true, 
-          pet: true
-        }
-      });
-      return user;
+      // const user =  await this.usersRepository.findOne({
+      //   where: { id: id },
+      //   relations: 
+      //   {address: true, 
+      //     pet: true
+      //   }
+      // });
+      // return user;
     } catch (error) {
       console.log(error);
       throw new HttpException(error.message, error.status);

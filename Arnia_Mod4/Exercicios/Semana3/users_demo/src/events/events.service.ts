@@ -5,17 +5,14 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Events } from 'src/entities/Events';
+import { Events } from '../entities/Events';
 import { MoreThanOrEqual, Repository } from 'typeorm';
 import { CreateEventDto } from './dtos/createEventDto';
 import { User } from 'src/entities/User';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from '../users/users.service';
 import { ConfigService } from '@nestjs/config';
-import { EventPhotos } from 'src/entities/EventPhotos';
-import { join } from 'path';
-import { Response } from 'express';
-import * as fs from 'fs';
-import { UpdateAddressDto } from 'src/address/dtos/UpdateAddress.dto';
+import { EventPhotos } from '../entities/EventPhotos';
+import { UpdateAddressDto } from '../address/dtos/UpdateAddress.dto';
 
 @Injectable()
 export class EventsService {

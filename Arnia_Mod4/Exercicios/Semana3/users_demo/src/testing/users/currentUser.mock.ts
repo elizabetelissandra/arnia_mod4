@@ -1,4 +1,4 @@
 export const currentUserMock = {
-    id: 1, 
+    id: 5, 
     email: 'eliza@email.com',
 }

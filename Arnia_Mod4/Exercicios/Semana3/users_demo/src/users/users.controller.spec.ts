@@ -66,4 +66,13 @@ describe('Users Controller', ()=> {
       expect(result).toHaveProperty('response')
     })
   })
+
+  describe('Auth Guard', ()=>{
+    it('Should validate if guard', async()=>{
+      const guards = Reflect.getMetadata('__guards__', usersController.profile)
+
+      expect(guards.length).toEqual(1)
+      expect(new guards[0]()).toBeInstanceOf(AuthGuard)
+    })
+  })
 })
